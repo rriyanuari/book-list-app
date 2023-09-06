@@ -1,0 +1,11 @@
+@import "rc-easyui/dist/themes/default/easyui.css";
+@import "rc-easyui/dist/themes/icon.css";
+@import "rc-easyui/dist/themes/react.css";
+
+.divider:after,
+.divider:before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
