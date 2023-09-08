@@ -81,7 +81,7 @@ const Navbar = () => {
                 <i className="fa-solid fa-book mx-2" /> Books
               </NavLink>
             </li>
-            <li className="nav-item ms-5">
+            <li className="nav-item mx-2 ms-md-5">
               <button
                 type="button"
                 onClick={_handlerLogout}

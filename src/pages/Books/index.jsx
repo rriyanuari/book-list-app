@@ -5,7 +5,9 @@ import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 
 const Books = () => {
+  const [searchField, setSearchField] = useState("");
   const [books, setBooks] = useState([]);
+  const [filteredBooks, setFilterBooks] = useState(books);
 
   const dummyBooks = [
     {
@@ -52,8 +54,20 @@ const Books = () => {
 
   useEffect(() => {
     setBooks(dummyBooks);
-    console.log(books);
   }, []);
+
+  useEffect(() => {
+    const newFilteredBooks = books.filter((book) => {
+      return book.title.toLocaleLowerCase().includes(searchField);
+    });
+
+    setFilterBooks(newFilteredBooks);
+  }, [books, searchField]);
+
+  const _onSearchChange = (event) => {
+    const searchFieldString = event.target.value.toLocaleLowerCase();
+    setSearchField(searchFieldString);
+  };
 
   return (
     <>
@@ -71,9 +85,10 @@ const Books = () => {
                 class="form-control"
                 id="floatingInput"
                 placeholder="search book name.."
+                onChange={_onSearchChange}
               />
               <span class="input-group-text" id="basic-addon2">
-              <i class="fa-brands fa-searchengin" />
+                <i class="fa-brands fa-searchengin" />
               </span>
             </div>
           </div>
@@ -99,9 +114,13 @@ const Books = () => {
           <i class="fa-solid fa-filter"></i>
         </div>
         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 align-items-stretch g-4 py-5">
-          {books.map((book) => {
+          {filteredBooks.map((book) => {
             return (
-              <motion.div className="col" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}> 
+              <motion.div
+                className="col"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
                 <div className="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg mx-1">
                   <div className="d-flex flex-column h-100 py-5 px-4 pb-3 text-white text-shadow-1">
                     <h5 className="pt-5 mt-5 mb-4 lh-1 fw-bold">
@@ -133,7 +152,6 @@ const Books = () => {
           })}
         </div>
       </div>
-
       {/* --------------- */}
 
       <Footer />
