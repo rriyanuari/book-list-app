@@ -58,7 +58,7 @@ const Login = () => {
                       id="floatingInput"
                       placeholder="username"
                     />
-                    <label for="floatingInput">Username</label>
+                    <label>Username</label>
                   </div>
                 </div>
 
@@ -74,7 +74,7 @@ const Login = () => {
                       id="floatingPassword"
                       placeholder="password"
                     />
-                    <label for="floatingPassword">Password</label>
+                    <label>Password</label>
                   </div>
                   <button
                     className="btn btn-outline-secondary"
